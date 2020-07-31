@@ -93,9 +93,12 @@
                 console.log(arr);
             }
 
-            if (!arr.length) {
+            if (arr.length === 0) {
                 result.innerHTML = "True!";
                 result.style.color = "green";
+            } else {
+                result.innerHTML = "False!";
+                result.style.color = "red";
             }
         }
     </script>
