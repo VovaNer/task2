@@ -61,62 +61,31 @@
             result = document.querySelector('#result');
 
         function func() {
-            numberOpenFig = 0;
-            numberOpenRound = 0;
-            numberOpenSqrt = 0;
-
-            numberCloseFig = 0;
-            numberCloseRound = 0;
-            numberCloseSqrt = 0;
-
             let inpText = inp.value;
 
-            for (i = 0; i < inpText.length; i++) {
-                if (inpText[i] == "{") {
-                    numberOpenFig++;
-                } else if (inpText[i] == "(") {
-                    numberOpenRound++;
-                } else if (inpText[i] == "[") {
-                    numberOpenSqrt++;
-                } else if (inpText[i] == "}") {
-                    numberCloseFig++;
-                } else if (inpText[i] == ")") {
-                    numberCloseRound++;
-                } else if (inpText[i] == "]") {
-                    numberCloseSqrt++;
+            let brackets = "(){}[]";
 
-                } else {
-                    result.innerHTML = "Error! Enter brackets";
-                    result.style.color = "rgb(155, 172, 2)";
-                    alert("You can enter only '(', ')', '{', '}', '[' and ']'.");
-                    return 0;
-                }
+            let arr = [];
 
-                if (numberOpenFig < numberCloseFig || numberOpenRound < numberCloseRound ||
-                    numberOpenSqrt < numberCloseSqrt) {
-                    result.innerHTML = "False!";
-                    result.style.color = "red";
-                    return 0;
-                }
+            for (let i = 0; i < inpText.length; i++) {
+                let index = brackets.indexOf(inpText[i]);
 
-                if (inpText[i] === "[" && inpText[inpText.length - 1 - i] !== "]" || inpText[i] === "{" && inpText[
-                        inpText.length - 1 - i] !== "}" || inpText[i] === "(" && inpText[inpText.length - 1 - i] !==
-                    ")") {
-                    result.innerHTML = "False!";
-                    result.style.color = "red";
-                    return 0;
-                }
+                if (index >= 0) {
+                    if (index % 2 === 1) {
+                        if (!arr.length) result.innerHTML = "False!"
+                        return 0;
 
-                if (numberOpenFig !== numberCloseFig || numberOpenRound !== numberCloseRound ||
-                    numberOpenSqrt !== numberCloseSqrt) {
-                    result.innerHTML = "False!";
-                    result.style.color = "red";
-                } else {
-                    result.innerHTML = "True!";
-                    result.style.color = "green";
+                        let lastBracket = arr.pop();
+
+                        if (lastBracket != brackets[index - 1]) result.innerHTML = "False!"
+                        return 0;
+                    } else {
+                        arr.push(inpText[i]);
+                    }
+
                 }
-            };
-        };
+            }
+        }
     </script>
 </body>
 
