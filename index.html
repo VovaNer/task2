@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .main {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(78, 78, 78);
+        }
+
+        .main-inner p {
+            margin-bottom: 40px;
+            font-size: 20px;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="main-inner">
+            <p>Result:
+                <span id="result"></span>
+            </p>
+            <input id="inputMain" type="text">
+            <input type="submit" onclick="func()" value="Check Brackets">
+
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        const inp = document.querySelector('#inputMain'),
+            result = document.querySelector('#result');
+
+        function func() {
+            numberOpenFig = 0;
+            numberOpenRound = 0;
+            numberOpenSqrt = 0;
+
+            numberCloseFig = 0;
+            numberCloseRound = 0;
+            numberCloseSqrt = 0;
+
+            let inpText = inp.value;
+
+            for (i = 0; i < inpText.length; i++) {
+                if (inpText[i] == "{") {
+                    numberOpenFig++;
+                } else if (inpText[i] == "(") {
+                    numberOpenRound++;
+                } else if (inpText[i] == "[") {
+                    numberOpenSqrt++;
+                } else if (inpText[i] == "}") {
+                    numberCloseFig++;
+                } else if (inpText[i] == ")") {
+                    numberCloseRound++;
+                } else if (inpText[i] == "]") {
+                    numberCloseSqrt++;
+
+                } else {
+                    result.innerHTML = "Error! Enter brackets";
+                    result.style.color = "rgb(155, 172, 2)";
+                    alert("You can enter only '(', ')', '{', '}', '[' and ']'.");
+                    return 0;
+                }
+
+                if (numberOpenFig < numberCloseFig || numberOpenRound < numberCloseRound ||
+                    numberOpenSqrt < numberCloseSqrt) {
+                    result.innerHTML = "Invalid!";
+                    result.style.color = "red";
+                    return 0;
+                }
+
+                if (inpText[i] === "[" && inpText[inpText.length - 1 - i] !== "]" || inpText[i] === "{" && inpText[
+                        inpText.length - 1 - i] !== "}" || inpText[i] === "(" && inpText[inpText.length - 1 - i] !==
+                    ")") {
+                    result.innerHTML = "Invalid!";
+                    result.style.color = "red";
+                    return 0;
+                }
+
+                if (numberOpenFig !== numberCloseFig || numberOpenRound !== numberCloseRound ||
+                    numberOpenSqrt !== numberCloseSqrt) {
+                    result.innerHTML = "Invalid!";
+                    result.style.color = "red";
+                } else {
+                    result.innerHTML = "Valid!";
+                    result.style.color = "green";
+                }
+            };
+        };
+    </script>
+</body>
+
+</html>
