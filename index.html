@@ -52,10 +52,6 @@
         </div>
     </div>
 
-
-
-
-
     <script>
         const inp = document.querySelector('#inputMain'),
             result = document.querySelector('#result');
@@ -72,18 +68,33 @@
 
                 if (index >= 0) {
                     if (index % 2 === 1) {
-                        if (!arr.length) result.innerHTML = "False!"
-                        return 0;
+                        if (!arr.length) {
+                            result.innerHTML = "False!"
+                            result.style.color = "red";
+                            return 0;
+                        }
 
                         let lastBracket = arr.pop();
 
-                        if (lastBracket != brackets[index - 1]) result.innerHTML = "False!"
-                        return 0;
+                        if (lastBracket != brackets[index - 1]) {
+                            result.innerHTML = "False!";
+                            result.style.color = "red";
+                            return 0;
+                        }
                     } else {
                         arr.push(inpText[i]);
                     }
 
+                } else {
+                    result.innerHTML = "Error! Enter brackets";
+                    result.style.color = "yellow";
+                    alert("You can enter only '(', ')', '{', '}', '[' and ']'.");
+                    return 0;
                 }
+            }
+            if (!arr.length) {
+                result.innerHTML = "True!";
+                result.style.color = "green";
             }
         }
     </script>
