@@ -94,7 +94,7 @@
 
                 if (numberOpenFig < numberCloseFig || numberOpenRound < numberCloseRound ||
                     numberOpenSqrt < numberCloseSqrt) {
-                    result.innerHTML = "Invalid!";
+                    result.innerHTML = "False!";
                     result.style.color = "red";
                     return 0;
                 }
@@ -102,17 +102,17 @@
                 if (inpText[i] === "[" && inpText[inpText.length - 1 - i] !== "]" || inpText[i] === "{" && inpText[
                         inpText.length - 1 - i] !== "}" || inpText[i] === "(" && inpText[inpText.length - 1 - i] !==
                     ")") {
-                    result.innerHTML = "Invalid!";
+                    result.innerHTML = "False!";
                     result.style.color = "red";
                     return 0;
                 }
 
                 if (numberOpenFig !== numberCloseFig || numberOpenRound !== numberCloseRound ||
                     numberOpenSqrt !== numberCloseSqrt) {
-                    result.innerHTML = "Invalid!";
+                    result.innerHTML = "False!";
                     result.style.color = "red";
                 } else {
-                    result.innerHTML = "Valid!";
+                    result.innerHTML = "True!";
                     result.style.color = "green";
                 }
             };
