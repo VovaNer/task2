@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Task2</title>
     <style>
         * {
             margin: 0;
@@ -35,9 +35,6 @@
             padding: 5px;
         }
     </style>
-
-
-
 </head>
 
 <body>
@@ -54,10 +51,11 @@
     </div>
 
     <script>
-        function func() {
-            const inp = document.querySelector('#inputMain'),
-                result = document.querySelector('#result');
+        const inp = document.querySelector('#inputMain'),
+            result = document.querySelector('#result');
 
+
+        function func() {
             let inpText = inp.value;
 
             let brackets = "(){}[]";
@@ -68,7 +66,7 @@
                 let index = brackets.indexOf(inpText[i]);
 
                 if (index >= 0) {
-                    if (index % 2 === 1) {
+                    if (index & 1) {
                         if (!arr.length) {
                             result.innerHTML = "False!"
                             result.style.color = "red";
@@ -92,7 +90,9 @@
                     alert("You can enter only '(', ')', '{', '}', '[' and ']'.");
                     return 0;
                 }
+                console.log(arr);
             }
+
             if (!arr.length) {
                 result.innerHTML = "True!";
                 result.style.color = "green";
