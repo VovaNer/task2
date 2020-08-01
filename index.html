@@ -1,107 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Task2</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        .main {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: rgb(78, 78, 78);
-        }
+      .main {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(78, 78, 78);
+      }
 
-        .main-inner {
+      /* .main-inner {
             transform: scale(1.4);
-        }
+        } */
 
-        .main-inner p {
-            margin-bottom: 40px;
-            font-size: 20px;
-            color: #fff;
-        }
+      .main-inner p {
+        margin-bottom: 40px;
+        font-size: 30px;
+        color: #fff;
+      }
 
-        input {
-            padding: 5px;
-        }
+      input {
+        padding: 10px;
+        font-size: 20px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="main">
-        <div class="main-inner">
-            <p>Result:
-                <span id="result"></span>
-            </p>
-            <input id="inputMain" type="text">
-            <input type="submit" onclick="func()" value="Check Brackets">
-
-        </div>
+      <div class="main-inner">
+        <p>
+          Result:
+          <span id="result"></span>
+        </p>
+        <input id="inputMain" type="text" />
+        <input type="submit" onclick="func()" value="Check Brackets" />
+      </div>
     </div>
 
     <script>
-        const inp = document.querySelector('#inputMain'),
-            result = document.querySelector('#result');
+      const inp = document.querySelector("#inputMain"),
+        result = document.querySelector("#result");
 
+      function func() {
+        let inpText = inp.value;
 
-        function func() {
-            let inpText = inp.value;
+        let brackets = "(){}[]";
 
-            let brackets = "(){}[]";
+        let arr = [];
 
-            let arr = [];
+        for (let i = 0; i < inpText.length; i++) {
+          let index = brackets.indexOf(inpText[i]);
 
-            for (let i = 0; i < inpText.length; i++) {
-                let index = brackets.indexOf(inpText[i]);
-
-                if (index >= 0) {
-                    if (index & 1) {
-                        if (!arr.length) {
-                            result.innerHTML = "False!"
-                            result.style.color = "red";
-                            return 0;
-                        }
-
-                        let lastBracket = arr.pop();
-
-                        if (lastBracket != brackets[index - 1]) {
-                            result.innerHTML = "False!";
-                            result.style.color = "red";
-                            return 0;
-                        }
-                    } else {
-                        arr.push(inpText[i]);
-                    }
-
-                } else {
-                    result.innerHTML = "Error! Enter brackets";
-                    result.style.color = "yellow";
-                    alert("You can enter only '(', ')', '{', '}', '[' and ']'.");
-                    return 0;
-                }
-                console.log(arr);
-            }
-
-            if (arr.length === 0) {
-                result.innerHTML = "True!";
-                result.style.color = "green";
-            } else {
+          if (index >= 0) {
+            if (index & 1) {
+              if (!arr.length) {
                 result.innerHTML = "False!";
                 result.style.color = "red";
-            }
-        }
-    </script>
-</body>
+                return 0;
+              }
 
+              let lastBracket = arr.pop();
+
+              if (lastBracket != brackets[index - 1]) {
+                result.innerHTML = "False!";
+                result.style.color = "red";
+                return 0;
+              }
+            } else {
+              arr.push(inpText[i]);
+            }
+          } else {
+            result.innerHTML = "Error! Enter brackets";
+            result.style.color = "yellow";
+            alert("You can enter only '(', ')', '{', '}', '[' and ']'.");
+            return 0;
+          }
+          console.log(arr);
+        }
+
+        if (arr.length === 0) {
+          result.innerHTML = "True!";
+          result.style.color = "green";
+        } else {
+          result.innerHTML = "False!";
+          result.style.color = "red";
+        }
+      }
+    </script>
+  </body>
 </html>
